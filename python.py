@@ -65,11 +65,7 @@ def lock():
 		my_notebook.tab(1, state='normal')
 		my_notebook.tab(2, state='normal')
 
-		plot_button = Button(master=trend_frame,
-							 command=plot1(1, dict1[home], dict1[foreign], 365),
-							 height=2,
-							 width=10,
-							 text="Plot")
+		plot1(1, dict1[home], dict1[foreign], 180),
 		#rate_entry.delete(0,tkinter.END)
 		#rate_entry.insert(0,str(cr.get_rate(dict1[home],dict1[foreign])))
 		# Change Tab Field
@@ -148,6 +144,10 @@ unlock_button.grid(row=0, column=1, padx=10)
 # CONVERSION STUFF
 #######################
 def convert():
+	check_val= str(amount_entry.get())
+	if(not check_val.isnumeric()):
+		messagebox.showwarning("Warning","Enter Valid Number")
+		return
 	val=float(amount_entry.get())
 	home=home_selected.get()
 	foreign=convert_select.get()
@@ -247,7 +247,10 @@ def plot1(amount,currency,converted_currency,amount_of_days):
 	plt.plot(rate_history_array)
 	plt.set_ylabel(f'{amount} {currency} to {converted_currency}')
 	plt.set_xlabel('Days')
-	plt.set_title(f'Current rate for {amount} {currency} to {converted_currency} is {rate_history_array[-1]}')
+	home = home_selected.get()
+	foreign = convert_select.get()
+	conv_rate = round(cr.get_rate(dict1[home], dict1[foreign]), 3)
+	plt.set_title(f'Current rate for {amount} {currency} to {converted_currency} is {conv_rate}')
 	# plt.show()
 
 	# creating the Tkinter canvas
