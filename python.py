@@ -19,7 +19,7 @@ import datetime
 root = Tk()
 root.title('Currency Conversion')
 
-root.geometry("500x500")
+root.geometry("600x600")
 dict1={'US Dollar':'USD','European Euro': 'EUR', 'Japanese yen': 'JPY', 'Bulgarian lev': 'BGN', 'Czech koruna': 'CZK', 'Danish krone': 'DKK', 'British pound': 'GBP', 'Hungarian forint': 'HUF', 'Polish zloty': 'PLN', 'Romanian leu': 'RON', 'Swedish krona': 'SEK', 'Swiss franc': 'CHF', 'Icelandic króna': 'ISK', 'Norwegian krone': 'NOK', 'Croatian kuna': 'HRK', 'Turkish new lira': 'TRY', 'Australian dollar': 'AUD', 'Brazilian real': 'BRL', 'Canadian dollar': 'CAD', 'Chinese/Yuan renminbi': 'CNY', 'Hong Kong dollar': 'HKD', 'Indonesian rupiah': 'IDR', 'Indian rupee': 'INR', 'South Korean won': 'KRW', 'Mexican peso': 'MXN', 'Malaysian ringgit': 'MYR', 'New Zealand dollar': 'NZD', 'Philippine peso': 'PHP', 'Singapore dollar': 'SGD', 'Thai baht': 'THB', 'South African rand': 'ZAR'}
 currencies=[i for i in dict1.keys()]
 cr = CurrencyRates()
@@ -95,6 +95,8 @@ def unlock():
 	#clear plot
 	for widgets in trend_frame.winfo_children():
 		widgets.destroy()
+	#clear amount in convert
+	clear()
 
 
 
