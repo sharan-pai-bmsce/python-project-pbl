@@ -145,7 +145,9 @@ unlock_button.grid(row=0, column=1, padx=10)
 #######################
 def convert():
 	check_val= str(amount_entry.get())
-	if(not check_val.isnumeric()):
+	try:
+		check_val=float(check_val)
+	except Exception:
 		messagebox.showwarning("Warning","Enter Valid Number")
 		return
 	val=float(amount_entry.get())
@@ -155,7 +157,7 @@ def convert():
 	converted_entry.delete(0, END)
 
 	# Convert
-	conversion = val * cr.get_rate(dict1[home],dict1[foreign])
+	conversion = val * float(rate_entry.get())
 	# Convert to two decimals
 	conversion = round(conversion,3)
 	# Add commas
@@ -241,7 +243,7 @@ def plot1(amount,currency,converted_currency,amount_of_days):
 	pd_data = pd.DataFrame(currency_history).transpose()
 	pd_data.columns = ['Rate']
 	pd.set_option('display.max_rows', None)
-	print(pd_data)
+	# print(pd_data)
 
 	plt = fig.add_subplot(111)
 	plt.plot(rate_history_array)
